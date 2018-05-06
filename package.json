@@ -1,0 +1,26 @@
+{
+  "name": "gulp-pico8",
+  "version": "0.0.1",
+  "description": "simple gulp pipeline for working with pico8 carts",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholaswagner/pico8gulp.git"
+  },
+  "author": "Nicholas Wagner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicholaswagner/pico8gulp/issues"
+  },
+  "homepage": "https://github.com/nicholaswagner/pico8gulp#readme",
+  "dependencies": {
+    "config": "^1.30.0",
+    "dotenv": "^5.0.1",
+    "find-process": "^1.1.1"
+  },
+  "devDependencies": {},
+  "config": {}
+}
