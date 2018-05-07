@@ -10,7 +10,7 @@ var filenameKey = "--file";
 function buildRunCartCommand(cart) {
 	let fp = `"${process.env.PICO8}"`;
 	let flags = ` "-run"`;
-	let result = fp + flags + ` "${process.cwd()}\\${process.env.CARTS || './carts'}\\${cart}"`;
+	let result = fp + flags + ` "${process.cwd()}\\${process.env.CARTS || '.\carts'}\\${cart}"`;
 	return result;
 }
 
@@ -35,28 +35,14 @@ function getCartName(argv) {
 	return result != "undefined" ? result : "example.p8";
 }
 
-/*	build once	*/
 gulp.task('build', function () {
-	buildCart(getCartName(process.argv));
+	reload(getCartName(process.argv));
 });
-
-gulp.task('test', function () {
-	console.log(`${process.env.CARTS || './carts/'}`);
-})
-
 
 gulp.task('reload', function () {
 	var watcher = gulp.watch(`./carts/${getCartName(process.argv)}`);
 	watcher.on('change', function (event) {
 		reload(getCartName(process.argv));
-		// find('name', 'pico8')
-		// 	.then(function (list) {
-		// 		if (list.length)
-		// 			list.forEach(instance => {
-		// 				process.kill(instance.pid);
-		// 			});
-		// 		buildCart(getCartName(process.argv));
-		// 	});
 	});
 	buildCart(getCartName(process.argv));
 })
