@@ -15,7 +15,7 @@ function buildRunCartCommand(cart) {
 }
 
 function getCartsDir() {
-	return `${process.env.CARTS || '.\carts'}`;
+	return `${process.env.CARTS || '.\\carts'}`;
 }
 
 function buildCart(filename) {
