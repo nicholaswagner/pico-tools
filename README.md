@@ -1,42 +1,41 @@
-# pico8gulp
-Simple workflow helper for pico8 development
+# pico-tools
+> Fast and simple.  Just like me.  - the author
+
+Don't make me take my hands off the home row!
+This is a toolchain I use to make pico-8 dev a little faster.
+
+`build` will load your cart in pico-8, and auto-play automatically.
+`watch` will detect changes to your .p8 file and run another `build`.
+`add_vscode_tasks` will copy over a .vscode/tasks.json file which let you do the same, but from a hotkey.
 
 ## PreReqs
-1. install [nodejs and npm](http://www.nodejs.org)
-2. install [gulp](https://gulpjs.com)
-3. run ```npm install```  
+1. An installed copy of [pico-8](https://www.lexaloffle.com/)
+2. requires [nodejs and npm](http://www.nodejs.org)
+
+## Gimme Gimme!
+Yeah, yeah, calm down.
+1. install the tools  with ```npm install -g pico-tools```
+2. configure it by running: `pico-tools configure `
 
 
-## Configuration
-This build assumes that there is a PICO8 environment variable in your PATH.
+## Documentation
 
-# I dont have PICO8 in my PATH:
-Don't worry about it.  Instead, create a `.env` file at the root of this repo with the following info:
+### `pico-tools configure`
+This will let you tell pico-tools where your copy of pico-8.exe lives.  
 
-``` bash
-#	For me on Windows 10 I used:
-#	PICO8 = "C:/\Program Files (x86)/\PICO-8/\pico8.exe"
-PICO8 = "path/to/pico-8.exe"
+---
 
-#	This is optional.  By default it uses "./carts"
-CARTS = "./path/to/carts/dir"
+### `pico-tools build`
+you can launch a cart in pico8 at any time by running: `pico-tools build path/to/cartridge.p8`
 
-```
+---
 
-## How to use
-Put your carts in the local `./carts` directory!
+### `pico-tools watch`
+watch a specific file for changes, and then reload automatically: `pico-tools watch path/to/cartridge.p8`
 
-##	Video game companies hate these two easy scripts!
+***WARNING***  If you use the watch command, please note that when the tools trigger a reload, you will lose any unsaved changes in the pico editor.  This goes for sprites and music too!  Keep that in mind so you don't lose work!
 
+---
 
-```bash
-# launches the pico8 app, loads your cart, and has it auto play on boot:
-gulp build --file example.p8`
-```
-
-
-``` bash
-# reloads your current pico8 project each time you save code changes to the cart file.
-gulp reload --file example.p8
-```
-__( Please note that any unsaved changes in the pico8 editor will be lost when the reload script activates. )__
+### `pico-tools vscode_tasks`
+This will create `.vscode/tasks.json` in your current directory.  This lets me hit `cntrl+shift+b` and activate one of the tools.
