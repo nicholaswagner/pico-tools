@@ -10,8 +10,12 @@ var filenameKey = "--file";
 function buildRunCartCommand(cart) {
 	let fp = `"${process.env.PICO8}"`;
 	let flags = ` "-run"`;
-	let result = fp + flags + ` "${process.cwd()}\\${process.env.CARTS || '.\carts'}\\${cart}"`;
+	let result = fp + flags + ` "${process.cwd()}\\${getCartsDir()}\\${cart}"`;
 	return result;
+}
+
+function getCartsDir() {
+	return `${process.env.CARTS || '.\carts'}`;
 }
 
 function buildCart(filename) {
@@ -40,9 +44,13 @@ gulp.task('build', function () {
 });
 
 gulp.task('reload', function () {
-	var watcher = gulp.watch(`./carts/${getCartName(process.argv)}`);
+	var watcher = gulp.watch(`${getCartsDir()}/${getCartName(process.argv)}`);
 	watcher.on('change', function (event) {
 		reload(getCartName(process.argv));
 	});
 	buildCart(getCartName(process.argv));
+})
+
+gulp.task('test', function () {
+	console.log(getCartsDir());
 })
