@@ -50,7 +50,3 @@ gulp.task('reload', function () {
 	});
 	buildCart(getCartName(process.argv));
 })
-
-gulp.task('test', function () {
-	console.log(getCartsDir());
-})
