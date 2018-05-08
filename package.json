@@ -1,7 +1,7 @@
 {
   "name": "gulp-pico8",
-  "version": "0.0.1",
-  "description": "simple gulp pipeline for working with pico8 carts",
+  "version": "0.6.0",
+  "description": "Don't make me take my hands off the home row! This is a toolchain I use to make pico-8 dev a little faster.",
   "main": "index.js",
   "bin": {
     "configure": "bin/configure.js",
@@ -11,14 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicholaswagner/gulp-pico8.git"
+    "url": "git+https://github.com/nicholaswagner/pico-tools.git"
   },
   "author": "Nicholas Wagner",
-  "license": "ISC",
+  "license": "MIT",
+  "keywords": ["pico-8", "pico8", "pico", "cli"],
   "bugs": {
-    "url": "https://github.com/nicholaswagner/gulp-pico8/issues"
+    "url": "https://github.com/nicholaswagner/pico-tools/issues"
   },
-  "homepage": "https://github.com/nicholaswagner/gulp-pico8#readme",
+  "homepage": "https://github.com/nicholaswagner/pico-tools#readme",
   "dependencies": {
     "chalk": "^2.4.1",
     "config": "^1.30.0",

@@ -14,28 +14,44 @@ This is a toolchain I use to make pico-8 dev a little faster.
 
 ## Gimme Gimme!
 Yeah, yeah, calm down.
-1. install the tools  with ```npm install -g pico-tools```
+1. install the tools  with `npm install -g pico-tools`
 2. configure it by running: `pico-tools configure `
 
 
 ## Documentation
 
 ### `pico-tools configure`
-This will let you tell pico-tools where your copy of pico-8.exe lives.  
-
+```bash
+# pico-tools will need to know where your Pico-8 executable lives.  
+pico-tools configure
+```
 ---
 
 ### `pico-tools build`
-you can launch a cart in pico8 at any time by running: `pico-tools build path/to/cartridge.p8`
+
+```bash
+# run a cartridge in pico-8 and have it auto play.
+
+pico-tools build path/to/cartridge.p8
+```
 
 ---
 
 ### `pico-tools watch`
-watch a specific file for changes, and then reload automatically: `pico-tools watch path/to/cartridge.p8`
+
+```bash
+# watch a specific file for changes, and then reload automatically.
+
+pico-tools watch path/to/cartridge.p8
+```
 
 ***WARNING***  If you use the watch command, please note that when the tools trigger a reload, you will lose any unsaved changes in the pico editor.  This goes for sprites and music too!  Keep that in mind so you don't lose work!
 
 ---
 
 ### `pico-tools vscode_tasks`
-This will create `.vscode/tasks.json` in your current directory.  This lets me hit `cntrl+shift+b` and activate one of the tools.
+```bash
+# This will create `.vscode/tasks.json` in your current directory.  This lets me hit `cntrl+shift+b` and activate one of the tools.
+
+pico-tools vscode_tasks
+```
