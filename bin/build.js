@@ -14,7 +14,7 @@ module.exports = {
 	run: async (filename) => {
 
 		if (process.env.PICO8 == undefined) {
-			console.log(chalk.white("\nNot yet configured.  Run pico-tools configure.\n"));
+			console.log(chalk.white("\nNot yet configured.  Run pico-tools setup.\n"));
 			process.exit(1);
 		}
 

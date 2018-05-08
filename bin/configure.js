@@ -33,7 +33,7 @@ module.exports = {
 						process.stdout.write('\033c');
 						console.log(chalk.black.bgWhite(`\n\ngulp-pico8 setup complete..	`));
 						console.log(chalk.grey(`\nsaved to: ${path.resolve('.pico_tools.env\n')}`));
-						console.log(chalk.black.bgWhite(`If you ever need to update this path just run configure again!\n\n`));
+						console.log(chalk.black.bgWhite(`If you ever need to update this path just run this again!\n\n`));
 						process.exit(0);
 					})
 				});
