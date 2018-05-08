@@ -1,16 +1,14 @@
 #! /usr/bin/env node
 
 const chalk = require('chalk');
+const shared = require('./shared.js');
 
 class Help {
-
 	constructor() {}
 
 	show() {
-		process.stdout.write(`\x1B[2J\x1B[0f`); // clear the terminal
-
+		shared.clearTerminal();
 		console.log(chalk.white.bgBlack(`\n\nUsage:  pico-tools COMMAND [command-specific-options] \n`));
-
 		console.log(`${chalk.white.bgBlack("build [file]		#  run pico-8, load file, auto-play")}`);
 		console.log(`${chalk.white.bgBlack("watch [file]		#  reload pico-8 when file is changed")}`);
 		console.log(`${chalk.white.bgBlack("vscode_tasks  		#  install a .vscode/tasks.json configured to use pico-tools to the current directory")}`);

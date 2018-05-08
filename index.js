@@ -1,14 +1,17 @@
 #! /usr/bin/env node
 
-const PicoUtils = require('./bin/utils.js');
-const help = require('./bin/help.js');
 const chalk = require('chalk');
 const opn = require('opn');
+const shared = require('./bin/shared.js');
+const help = require('./bin/help.js');
+const tasks = require('./bin/vscode_tasks.js');
 
-process.stdout.write("\033c"); // clear the terminal
+//process.stdout.write("\033c"); // clear the terminal
+
+shared.clearTerminal();
 
 /** Check to make sure we know where pico-8 executable is */
-if (!PicoUtils.pico_exe_path) {
+if (!shared.pico_exe_path) {
 	console.log(
 		chalk.white.bgRed(` Missing PICO8 environment variable  `) +
 		chalk.white.bgBlack(`\n\n visit http://www.github.com/nicholaswagner/pico-tools#setup-is-a-piece-of-cake  \n\n`)
@@ -37,7 +40,7 @@ switch (command_name) {
 		break;
 
 	case "vscode_tasks":
-
+		tasks.install_vscode_tasks();
 		break;
 
 	default:

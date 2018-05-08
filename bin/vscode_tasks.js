@@ -2,16 +2,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
+const shared = require('./shared.js');
 
-module.exports = {
-	run: function () {
-		if (!fs.existsSync('.vscode'))
-			fs.mkdirSync('.vscode');
+class Tasks {
+	constructor() {}
 
-		let tasks = {
+	get taskJson() {
+		return {
 			"version": "2.0.0",
 			"tasks": [{
-					"label": "Run the current file in Pico-8",
+					"label": "run with pico-tools",
 					"type": "shell",
 					"command": "pico-tools build ${file}",
 					"isBackground": false,
@@ -21,7 +22,7 @@ module.exports = {
 					},
 				},
 				{
-					"label": "Watch current file and reload Pico-8 on save",
+					"label": "watch with pico-tools",
 					"type": "shell",
 					"command": "pico-tools watch ${file}",
 					"isBackground": true,
@@ -32,9 +33,25 @@ module.exports = {
 				}
 			]
 		};
+	}
 
-		fs.writeFileSync("./.vscode/tasks.json", JSON.stringify(tasks), (err) => {
-			Console.log("error writing vscode tasks.  please ping me and let me know that this broke for you, in the meantime, there is a copy on my github repo.");
+	install_vscode_tasks() {
+
+		if (!fs.existsSync('.vscode')) fs.mkdirSync('.vscode');
+
+		fs.writeFileSync("./.vscode/tasks.json", JSON.stringify(this.taskJson), (err) => {
+			shared.clearTerminal();
+			console.log(chalk.white.bgRed(` Error- Unable to create vscode tasks.json.\n`));
+			console.log(chalk.white.bgBlack('Please submit an issue at: ' + `http://www.github.com/nicholaswagner/pico-tools#issues \n`));
+			console.log(`\nError Details ---- \n`);
+			console.log(err);
+			console.log(`\n`);
 		});
+		shared.clearTerminal();
+		console.log(chalk.white.bgBlack("\n./vscode/tasks.json installed.  pico-tools build and watch commands now available to vscode.\n"));
+		process.exit(0);
 	}
 }
+
+var _instance = new Tasks();
+module.exports = _instance;

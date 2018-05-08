@@ -4,7 +4,7 @@ const os = require('os');
 const dotenv = require('dotenv').config();
 
 
-class PicoUtils {
+class Shared {
 
 	constructor() {
 		this.OS_MAC = 'macos';
@@ -31,9 +31,13 @@ class PicoUtils {
 		return process.env.PICO8 || undefined;
 	}
 
+	clearTerminal() {
+		process.stdout.write(`\x1B[2J\x1B[0f`);
+	}
+
 
 
 }
 
-var _instance = new PicoUtils();
+var _instance = new Shared();
 module.exports = _instance;
