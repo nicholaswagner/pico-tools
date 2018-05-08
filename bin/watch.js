@@ -27,7 +27,7 @@ module.exports = {
 			process.exit(1);
 		}
 
-		fs.watchFile(`${filename}`, {
+		fs.watch(`${filename}`, {
 			interval: 2000
 		}, (e, f) => {
 			build(filename);
@@ -40,20 +40,32 @@ module.exports = {
 		// 	return result;
 		// }
 
-		function build(filepath) {
+		async function build(filepath) {
+			console.log(chalk.grey('---'));
 			find('name', 'pico8')
 				.then(function (list) {
 					if (list.length)
 						list.forEach(instance => {
+							//console.log(util.inspect(instance));
+							console.log(chalk.red('killing:	') + chalk.grey(`${instance.pid}		${instance.name}`));
 							if (instance.name == "pico8.exe" || instance.name == "pico8")
-								process.kill(instance.pid);
+								if (instance.pid !== process.pid)
+									process.kill(instance.pid);
 						});
-						execFile(`${process.env.PICO8}`,["-run", `${filepath}`], (err,stdout,stderr) => {
-							if (err) throw err;
-							console.log(stdout);
-						});
+					// block for half a second before spinning up new pico
+
+					let f = execFile(`${process.env.PICO8}`, ["-run", `${filepath}`], (err, stdout, stderr) => {
+						if (err) {
+							console.log(chalk.red(`${err}`));
+							//throw err;
+						}
+						console.log(chalk.blue(stdout));
+						console.log(chalk.green(f.pid + " running"));
+					});
 					//exec(buildRunCartCommand(filepath));
-				}).catch(function(reason){console.log(`promise rejected for reason: ${reason}`)});
+				}).catch(function (reason) {
+					console.log(`promise rejected for reason: ${reason}`)
+				});
 		}
 	}
 }
