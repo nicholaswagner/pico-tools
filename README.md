@@ -38,17 +38,6 @@ PICO8 = /Applications/PICO-8/PICO-8.app/Contents/MacOS/pico8
 
 ## Documentation
 
-
----
-
-### `pico-tools bbs`
-
-```bash
-# will open the pico-8 bbs in your browser
-
-pico-tools bbs
-```
-
 ---
 
 ### `pico-tools build`
@@ -79,3 +68,25 @@ pico-tools watch path/to/cartridge.p8
 
 pico-tools vscode_tasks
 ```
+
+---
+
+### `pico-tools home`
+
+```bash
+# will open the pico-tools github page
+
+pico-tools home
+```
+
+---
+
+### `pico-tools bbs`
+
+```bash
+# will open the pico-8 bbs in your browser
+
+pico-tools bbs
+```
+
+---

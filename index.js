@@ -5,8 +5,8 @@ const opn = require('opn');
 const shared = require('./bin/shared.js');
 const help = require('./bin/help.js');
 const tasks = require('./bin/vscode_tasks.js');
-
-//process.stdout.write("\033c"); // clear the terminal
+const builder = require('./bin/builder.js');
+const watcher = require('./bin/watcher.js');
 
 shared.clearTerminal();
 
@@ -23,8 +23,6 @@ var command_name = process.argv[2];
 var command_options = process.argv[3];
 
 
-console.log(`command was: ${command_name}  with options:  ${command_options}`);
-
 switch (command_name) {
 
 	case "bbs":
@@ -36,7 +34,11 @@ switch (command_name) {
 		break;
 
 	case "build":
+		builder.build(`${command_options}`);
+		break;
+
 	case "watch":
+		watcher.watch(`${command_options}`);
 		break;
 
 	case "vscode_tasks":
@@ -47,42 +49,3 @@ switch (command_name) {
 		help.show();
 		break;
 }
-
-
-// const path = require('path');
-// const dotenv = require('dotenv').config({
-// 	path: path.resolve(process.cwd(), '.pico_tools.env')
-// });
-// const chalk = require('chalk');
-
-// var cmd = `${process.argv[2]}`;
-
-// //console.log(process.argv);
-
-// if (process.env.PICO8 == undefined) {
-// 	require('./bin/configure.js').run();
-// } else {
-// 	switch (cmd) {
-
-// 		case 'setup':
-// 			require('./bin/configure.js').run();
-// 			break;
-
-// 		case 'build':
-// 			require('./bin/build.js').run(`${process.argv[3]}`);
-// 			break;
-
-// 		case 'watch':
-// 			require('./bin/watch.js').run(`${process.argv[3]}`);
-// 			break;
-
-// 		case 'vscode_tasks':
-// 			require('./bin/vscode_tasks.js').run();
-// 			break;
-
-// 		default:
-// 			console.log(chalk.black.bgWhite("🕹️   pico-tools v1.0.0  "));
-// 			process.exit(1);
-// 			break;
-// 	}
-// }
