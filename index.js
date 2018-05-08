@@ -8,10 +8,13 @@ const chalk = require('chalk');
 
 var cmd = `${process.argv[2]}`;
 
+//console.log(process.argv);
+
 if (process.env.PICO8 == undefined) {
 	require('./bin/configure.js').run();
 } else {
 	switch (cmd) {
+
 		case 'setup':
 			require('./bin/configure.js').run();
 			break;

@@ -6,12 +6,14 @@ const dotenv = require('dotenv').config({
 });
 const find = require('find-process');
 const util = require('util');
-const exec = require('child_process').exec;
-const chalk = require('chalk');
+//const exec = require('child_process').exec;
 
+const chalk = require('chalk');
+const execFile = require('child_process').execFile;
 
 module.exports = {
 	run: async (filename) => {
+		console.log('\n\nbuild run called\n');
 
 		if (process.env.PICO8 == undefined) {
 			console.log(chalk.white("\nNot yet configured.  Run pico-tools setup.\n"));
@@ -25,12 +27,14 @@ module.exports = {
 
 		build(filename);
 
-		function buildRunCartCommand(filepath) {
-			let fp = `"${process.env.PICO8}"`;
-			let flags = ` "-run"`;
-			let result = fp + flags + ` "${filepath}"`;
-			return result;
-		}
+		// function buildRunCartCommand(filepath) {
+		// 	if (process.platform == 'darwin'){
+		// 		return `${process.env.PICO8} -r ${filepath}`;
+		// 	}
+		// 	else {
+		// 		return `"${process.env.PICO8}" "-run" "${filepath}"`;
+		// 	}
+		// }
 
 		function build(filepath) {
 			find('name', 'pico8')
@@ -40,8 +44,16 @@ module.exports = {
 							if (instance.name == "pico8.exe" || instance.name == "pico8.app")
 								process.kill(instance.pid);
 						});
-					exec(buildRunCartCommand(filepath));
+					execFile(`${process.env.PICO8}`,["-run", `${filepath}`], (err,stdout,stderr) => {
+						if (err) throw err;
+						console.log(stdout);
+					});
 				});
+			//console.log('\n--	'+filepath);
+			//exec(buildRunCartCommand(filepath));
+			//execFile(`"${process.env.PICO8}"`,[`-run ${filepath}`], (err,stdout,stderr) => {
+
+			
 		}
 
 	}
