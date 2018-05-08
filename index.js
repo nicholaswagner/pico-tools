@@ -1,8 +1,14 @@
 #! /usr/bin/env node
 
-const dotenv = require('dotenv').config()
+const path = require('path');
+const dotenv = require('dotenv').config({
+	path: path.resolve(process.cwd(), '.pico_tools.env')
+});
+const chalk = require('chalk');
 
-switch (`${process.argv[2]}`) {
+var cmd = `${process.argv[2]}`;
+
+switch (cmd) {
 	case 'configure':
 		require('./bin/configure.js').run();
 		break;
@@ -19,9 +25,8 @@ switch (`${process.argv[2]}`) {
 		require('./bin/vscode_tasks.js').run();
 		break;
 
-	case 'undefined':
 	default:
-		console.log(`error:  ${process.argv[2]} `);
+		console.log(chalk.black.bgWhite("🕹️   pico-tools v0.6.0  "));
 		process.exit(1);
 		break;
 

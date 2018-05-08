@@ -8,7 +8,7 @@ const util = require('util');
 
 module.exports = {
 	run: function () {
-		if (!fs.existsSync('.env')) {
+		if (!fs.existsSync('.pico_tools.env')) {
 			process.stdout.write('\033c');
 			prompt.message = "";
 			prompt.delimiter = "";
@@ -29,12 +29,12 @@ module.exports = {
 
 					let d = `PICO8 = ${result.filepath}`;
 
-					fs.writeFile('.env', d, function (err) {
-
+					fs.writeFile('.pico_tools.env', d, function (err) {
 						process.stdout.write('\033c');
 						console.log(chalk.black.bgWhite(`\n\ngulp-pico8 setup complete..	`));
-						console.log(chalk.grey(`\nsaved to: ${path.resolve('.env\n')}`));
+						console.log(chalk.grey(`\nsaved to: ${path.resolve('.pico_tools.env\n')}`));
 						console.log(chalk.black.bgWhite(`If you ever need to update this path just run configure again!\n\n`));
+						process.exit(0);
 					})
 				});
 		}

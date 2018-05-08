@@ -1,20 +1,24 @@
 #! /usr/bin/env node
 
+
+
+const path = require('path');
 const gulp = require('gulp');
-const dotenv = require('dotenv').config()
 const find = require('find-process');
 const util = require('util');
 const exec = require('child_process').exec;
 const chalk = require('chalk');
 const prompt = require('prompt');
-const filenameKey = "--file";
+const dotenv = require('dotenv').config({
+	path: path.resolve(process.cwd(), '.pico_tools.env')
+});
 
 module.exports = {
 	run: function (filename) {
 
 		// Check for PICO8 location
 		if (process.env.PICO8 == undefined) {
-			console.log(chalk.white("\nNo Pico-8 configuration set.  Please run gulp-pico configure.\n"));
+			console.log(chalk.white("\nNot yet configured.  Run pico-tools configure.\n"));
 			process.exit(1);
 		}
 
