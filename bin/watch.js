@@ -11,6 +11,8 @@ const dotenv = require('dotenv').config({
 	path: path.resolve(process.cwd(), '.pico_tools.env')
 });
 
+var prevtime = Date.now();
+
 module.exports = {
 	run: function (filename) {
 		console.log('loading filename: ' + filename);
@@ -28,9 +30,15 @@ module.exports = {
 		}
 
 		fs.watch(`${filename}`, {
-			interval: 2000
+			interval: 6000
 		}, (e, f) => {
-			build(filename);
+			let now = Date.now();
+			if (now - prevtime > 2000){
+				console.log(chalk.blue(e));
+				prevtime = now;
+				if (e =='change')
+					build(filename);
+			}
 		});
 
 		// function buildRunCartCommand(filepath) {
@@ -52,8 +60,6 @@ module.exports = {
 								if (instance.pid !== process.pid)
 									process.kill(instance.pid);
 						});
-					// block for half a second before spinning up new pico
-
 					let f = execFile(`${process.env.PICO8}`, ["-run", `${filepath}`], (err, stdout, stderr) => {
 						if (err) {
 							console.log(chalk.red(`${err}`));
