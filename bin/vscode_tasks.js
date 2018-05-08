@@ -27,7 +27,7 @@ module.exports = {
 					"isBackground": true,
 					"group": {
 						"kind": "build",
-						"isDefault": true
+						"isDefault": false
 					}
 				}
 			]

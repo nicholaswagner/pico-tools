@@ -1,20 +1,19 @@
 #! /usr/bin/env node
 
-
-
 const path = require('path');
-const gulp = require('gulp');
 const find = require('find-process');
 const util = require('util');
 const exec = require('child_process').exec;
 const chalk = require('chalk');
 const prompt = require('prompt');
+const fs = require('fs');
 const dotenv = require('dotenv').config({
 	path: path.resolve(process.cwd(), '.pico_tools.env')
 });
 
 module.exports = {
 	run: function (filename) {
+		console.log('filename: ' + filename);
 
 		// Check for PICO8 location
 		if (process.env.PICO8 == undefined) {
@@ -28,9 +27,9 @@ module.exports = {
 			process.exit(1);
 		}
 
-		var watcher = gulp.watch(`${process.cwd()}\\${filename}`);
-		watcher.on('change', function (event) {
-			console.log(chalk.grey("\n reloading"));
+		fs.watchFile(`${filename}`, {
+			interval: 2000
+		}, (e, f) => {
 			build(filename);
 		});
 
