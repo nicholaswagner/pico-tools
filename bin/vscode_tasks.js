@@ -28,27 +28,27 @@ class Tasks {
 					"isBackground": true,
 					"group": {
 						"kind": "build",
-						"isDefault": false
+						"isDefault": true
 					}
 				}
 			]
 		};
 	}
 
-	install_vscode_tasks() {
+	async install_vscode_tasks() {
 
 		if (!fs.existsSync('.vscode')) fs.mkdirSync('.vscode');
 
 		fs.writeFileSync("./.vscode/tasks.json", JSON.stringify(this.taskJson), (err) => {
 			shared.clearTerminal();
 			console.log(chalk.white.bgRed(` Error- Unable to create vscode tasks.json.\n`));
-			console.log(chalk.white.bgBlack('Please submit an issue at: ' + `http://www.github.com/nicholaswagner/pico-tools#issues \n`));
+			console.log(chalk.default('Please submit an issue at: ' + `http://www.github.com/nicholaswagner/pico-tools#issues \n`));
 			console.log(`\nError Details ---- \n`);
 			console.log(err);
 			console.log(`\n`);
 		});
 		shared.clearTerminal();
-		console.log(chalk.white.bgBlack("\n./vscode/tasks.json installed.  pico-tools build and watch commands now available to vscode.\n"));
+		console.log(chalk.default("\n./vscode/tasks.json installed.  pico-tools build and watch commands now available to vscode.\n"));
 		process.exit(0);
 	}
 }

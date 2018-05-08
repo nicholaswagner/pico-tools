@@ -12,10 +12,8 @@ shared.clearTerminal();
 
 /** Check to make sure we know where pico-8 executable is */
 if (!shared.pico_exe_path) {
-	console.log(
-		chalk.white.bgRed(` Missing PICO8 environment variable  `) +
-		chalk.white.bgBlack(`\n\n visit http://www.github.com/nicholaswagner/pico-tools#setup-is-a-piece-of-cake  \n\n`)
-	);
+	console.log(chalk.red(`\nMissing PICO8 environment variable  `));
+	console.log(chalk.default(`\nvisit http://www.github.com/nicholaswagner/pico-tools#setup-is-a-piece-of-cake  \n\n`))
 	process.exit(0);
 }
 

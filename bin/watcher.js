@@ -1,26 +1,22 @@
 #! /usr/bin/env node
-
 const path = require('path');
 const find = require('find-process');
 const util = require('util');
 const fs = require('fs');
 const execFile = require('child_process').execFile;
 const chalk = require('chalk');
-
 const shared = require('./shared.js');
 const builder = require('./builder.js');
 
-
 class Watcher {
-
 	constructor() {
 		this.prev = Date.now();
 	}
 
-	watch(filename) {
+	async watch(filename) {
 		if (!filename || filename == undefined || filename == "undefined") {
-			console.log(chalk.white.bgBlack(`to use the watch command you must provide a filename.`));
-			console.log(chalk.white.bgBlack(`example:  ${chalk.cyan.bgBlack("pico-tools watch ./example.p8")} )`));
+			console.log(chalk.default(`to use the watch command you must provide a filename.`));
+			console.log(chalk.default(`example:  ${chalk.default("pico-tools watch ./example.p8")} )`));
 			process.exit(0);
 		} else {
 			fs.watch(`${filename}`, {
@@ -35,7 +31,6 @@ class Watcher {
 						builder.build(filename);
 				}
 			});
-			builder.build(filename);
 		}
 	}
 

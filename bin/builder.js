@@ -11,10 +11,10 @@ const shared = require('./shared.js');
 class Builder {
 	constructor() {}
 
-	async build(filename) {
+	build(filename) {
 		if (!filename || filename == "undefined") {
-			console.log(chalk.white.bgBlack(`to use the build command you must provide a filename.`));
-			console.log(chalk.white.bgBlack(`example:  ${chalk.white.bgBlack("pico-tools watch ./example.p8\n\n")}`));
+			console.log(`to use the build command you must provide a filename.`);
+			console.log(`example:  pico-tools watch ./example.p8\n\n`);
 			process.exit(0);
 		}
 
@@ -22,14 +22,11 @@ class Builder {
 			.then(function (list) {
 				if (list.length)
 					list.forEach(instance => {
-						if (instance.name == "pico8.exe" || instance.name == "pico8.app")
+						if (instance.name == "pico8.exe" || instance.name == "pico8") {
 							process.kill(instance.pid);
+						}
 					});
-				try {
-					execFile(`${shared.pico_exe_path}`, ["-run", `${filename}`]);
-				} catch (err) {
-					// assume its going to throw an error because we deliberately kill the process
-				}
+				execFile(`${shared.pico_exe_path}`, ["-run", `${filename}`]);
 			});
 	}
 }
