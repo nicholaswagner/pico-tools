@@ -26,7 +26,7 @@ switch (cmd) {
 		break;
 
 	default:
-		console.log(chalk.black.bgWhite("🕹️   pico-tools v0.6.0  "));
+		console.log(chalk.black.bgWhite("🕹️   pico-tools v1.0.0  "));
 		process.exit(1);
 		break;
 
