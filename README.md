@@ -2,8 +2,9 @@
 > Fast and simple.  Just like me.  - the author
 
 Don't make me take my hands off the home row!
-This is a toolchain I use to make pico-8 dev a little faster.
+This is a toolchain I use to make pico-8 dev a little faster and more flexible.
 
+`setup` lets you configure the current folder for pico-tools.(you can have different settings per folder)
 `build` will load your cart in pico-8, and auto-play automatically.
 `watch` will detect changes to your .p8 file and run another `build`.
 `add_vscode_tasks` will copy over a .vscode/tasks.json file which let you do the same, but from a hotkey.
@@ -15,22 +16,22 @@ This is a toolchain I use to make pico-8 dev a little faster.
 ## Gimme Gimme!
 Yeah, yeah, calm down.
 1. install the tools  with `npm install -g pico-tools`
-2. configure it by running: `pico-tools configure `
+2. configure it by running: `pico-tools setup `
 
 
 ## Documentation
 
-### `pico-tools configure`
+### `pico-tools setup`
 ```bash
 # pico-tools will need to know where your Pico-8 executable lives.  
-pico-tools configure
+pico-tools setup
 ```
 ---
 
 ### `pico-tools build`
 
 ```bash
-# run a cartridge in pico-8 and have it auto play.
+# run a cartridge in pico-8 and have it auto-play.
 
 pico-tools build path/to/cartridge.p8
 ```
