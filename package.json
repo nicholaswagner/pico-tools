@@ -15,7 +15,12 @@
   },
   "author": "Nicholas Wagner",
   "license": "MIT",
-  "keywords": ["pico-8", "pico8", "pico", "cli"],
+  "keywords": [
+    "pico-8",
+    "pico8",
+    "pico",
+    "cli"
+  ],
   "bugs": {
     "url": "https://github.com/nicholaswagner/pico-tools/issues"
   },
