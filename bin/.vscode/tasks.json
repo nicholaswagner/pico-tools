@@ -6,7 +6,7 @@
 		{
 			"label": "Run the current file in Pico-8",
 			"type": "shell",
-			"command": "build ${file}",
+			"command": "pico-tools build ${file}",
 			"isBackground": false,
 			"group": {
 				"kind": "build",
@@ -16,7 +16,7 @@
 		{
 			"label": "Watch current file and reload Pico-8 on save",
 			"type": "shell",
-			"command": "watch ${file}",
+			"command": "pico-tools watch ${file}",
 			"isBackground": true,
 			"group": {
 				"kind": "build",

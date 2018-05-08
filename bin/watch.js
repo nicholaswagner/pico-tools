@@ -9,50 +9,45 @@ const chalk = require('chalk');
 const prompt = require('prompt');
 const filenameKey = "--file";
 
-// Check for PICO8 location
-if (process.env.PICO8 == undefined) {
-	console.log(chalk.white("\nNo Pico-8 configuration set.  Please run gulp-pico configure.\n"));
-	process.exit(1);
-}
+module.exports = {
+	run: function (filename) {
 
-if (!process.argv[2]) {
-	//process.stdout.write('\033c');
-	console.log(chalk.white("\nNo file specified. Use " + chalk.yellow.bgRed("build path/to/file.p8 instead.")));
-	process.exit(1);
-}
+		// Check for PICO8 location
+		if (process.env.PICO8 == undefined) {
+			console.log(chalk.white("\nNo Pico-8 configuration set.  Please run gulp-pico configure.\n"));
+			process.exit(1);
+		}
 
-var watcher = gulp.watch(`${process.cwd()}\\${process.argv[2]}`);
-watcher.on('change', function (event) {
-	rebuild(process.argv[2]);
-});
+		if (!filename || filename == "undefined") {
+			//process.stdout.write('\033c');
+			console.log(chalk.white("\nNo file specified. Use " + chalk.yellow.bgRed("build path/to/file.p8 instead.")));
+			process.exit(1);
+		}
 
-function buildRunCartCommand(filepath) {
-	let fp = `"${process.env.PICO8}"`;
-	let flags = ` "-run"`;
-	let result = fp + flags + ` "${filepath}"`;
-	return result;
-}
-
-function rebuild(filepath) {
-	find('name', 'pico8')
-		.then(function (list) {
-			if (list.length)
-				list.forEach(instance => {
-					if (instance.name == "pico8.exe" || instance.name == "pico8.app" || instance.pid.toString() !== process.pid.toString()) {
-						process.kill(instance.pid);
-					}
-				});
-			exec(buildRunCartCommand(filepath));
+		var watcher = gulp.watch(`${process.cwd()}\\${filename}`);
+		watcher.on('change', function (event) {
+			console.log(chalk.grey("\n reloading"));
+			build(filename);
 		});
-}
 
-function build(filepath) {
-	find('name', 'pico8')
-		.then(function (list) {
-			if (list.length)
-				list.forEach(instance => {
-					process.kill(instance.pid);
+		function buildRunCartCommand(filepath) {
+			let fp = `"${process.env.PICO8}"`;
+			let flags = ` "-run"`;
+			let result = fp + flags + ` "${filepath}"`;
+			return result;
+		}
+
+		function build(filepath) {
+			find('name', 'pico8')
+				.then(function (list) {
+					if (list.length)
+						list.forEach(instance => {
+							if (instance.name == "pico8.exe" || instance.name == "pico8.app") {
+								process.kill(instance.pid);
+							}
+						});
+					exec(buildRunCartCommand(filepath));
 				});
-		});
-	exec(buildRunCartCommand(filepath));
+		}
+	}
 }
