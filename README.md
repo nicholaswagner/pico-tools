@@ -15,17 +15,40 @@ This is a toolchain I use to make pico-8 dev a little faster and more flexible.
 
 ## Gimme Gimme!
 Yeah, yeah, calm down.
-1. install the tools  with `npm install -g pico-tools`
-2. configure it by running: `pico-tools setup `
+```bash
+# install pico-tools with 
+npm install -g pico-tools
+```
+
+## Setup is a piece of cake
+pico-tools uses an environment variable to know where your pico-8 executable is.
+
+There are many ways to do that, but we've included an easy way for beginners:
+
+Simply create a `.env` file at the root of your project folder with one of the following: ( Your setup may differ slightly. )
+
+```bash
+# Typical Windows setup
+PICO8=c:\Users\nicho\Desktop\pico-8_win32\pico8.exe
+
+# Typical MacOS setup
+PICO8 = /Applications/PICO-8/PICO-8.app/Contents/MacOS/pico8
+```
 
 
 ## Documentation
 
-### `pico-tools setup`
+
+---
+
+### `pico-tools bbs`
+
 ```bash
-# pico-tools will need to know where your Pico-8 executable lives.  
-pico-tools setup
+# will open the pico-8 bbs in your browser
+
+pico-tools bbs
 ```
+
 ---
 
 ### `pico-tools build`

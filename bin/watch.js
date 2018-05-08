@@ -33,10 +33,10 @@ module.exports = {
 			interval: 6000
 		}, (e, f) => {
 			let now = Date.now();
-			if (now - prevtime > 2000){
+			if (now - prevtime > 2000) {
 				console.log(chalk.blue(e));
 				prevtime = now;
-				if (e =='change')
+				if (e == 'change')
 					build(filename);
 			}
 		});
