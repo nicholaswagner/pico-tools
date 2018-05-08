@@ -8,6 +8,6 @@ module.exports = {
 		if (!fs.existsSync('.vscode'))
 			fs.mkdirSync('.vscode');
 
-		fs.createReadStream('bin/vscode/tasks.json').pipe(fs.createWriteStream('.vscode/tasks.json'));
+		fs.createReadStream('bin/.vscode/tasks.json').pipe(fs.createWriteStream('.vscode/tasks.json'));
 	}
 }
