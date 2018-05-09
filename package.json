@@ -1,6 +1,6 @@
 {
   "name": "pico-tools",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Don't make me take my hands off the home row! This is a toolchain I use to make pico-8 dev a little faster.",
   "main": "index.js",
   "bin": {
