@@ -16,13 +16,13 @@ class Shared {
 		let p = os.platform();
 		switch (p) {
 			case 'win32':
-				return PicoUtils.OS_WINDOWS;
+				return this.OS_WINDOWS;
 				break;
 			case 'darwin':
-				return PicoUtils.OS_MAC;
+				return this.OS_MAC;
 				break;
 			default:
-				return PicoUtils.OS_LINUX;
+				return this.OS_LINUX;
 				break;
 		}
 	}

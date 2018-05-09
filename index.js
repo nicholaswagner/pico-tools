@@ -7,22 +7,23 @@ const help = require('./bin/help.js');
 const tasks = require('./bin/vscode_tasks.js');
 const builder = require('./bin/builder.js');
 const watcher = require('./bin/watcher.js');
+const man = require('./bin/manual.js');
 
 shared.clearTerminal();
+var command_name = process.argv[2];
+var command_options = process.argv[3];
+
+// its nice to be able to ru these from anywhere
+let safeList = ["", "bbs", "home", "man", "undefined"];
 
 /** Check to make sure we know where pico-8 executable is */
-if (!shared.pico_exe_path) {
+if (safeList.indexOf(command_name) < 0 && !shared.pico_exe_path) {
 	console.log(chalk.red(`\nMissing PICO8 environment variable  `));
 	console.log(chalk.default(`\nvisit http://www.github.com/nicholaswagner/pico-tools#setup-is-a-piece-of-cake  \n\n`))
 	process.exit(0);
 }
 
-var command_name = process.argv[2];
-var command_options = process.argv[3];
-
-
 switch (command_name) {
-
 	case "bbs":
 		opn('https://www.lexaloffle.com/bbs');
 		break;
@@ -41,6 +42,10 @@ switch (command_name) {
 
 	case "vscode_tasks":
 		tasks.install_vscode_tasks();
+		break;
+
+	case "man":
+		man.show();
 		break;
 
 	default:

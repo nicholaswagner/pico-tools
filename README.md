@@ -90,3 +90,14 @@ pico-tools bbs
 ```
 
 ---
+
+### `pico-tools man`
+
+```bash
+# This will echo the Pico-8 Documentation to the terminal.
+# Combine this with other tools like less or grep!
+# example:    pico-tools man | less
+pico-tools man
+```
+
+---
