@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const chalk = require('chalk');
-const opn = require('opn');
+const open = require('open');
 const shared = require('./bin/shared.js');
 const help = require('./bin/help.js');
 const tasks = require('./bin/vscode_tasks.js');
@@ -25,11 +25,11 @@ if (safeList.indexOf(command_name) < 0 && !shared.pico_exe_path) {
 
 switch (command_name) {
 	case "bbs":
-		opn('https://www.lexaloffle.com/bbs');
+		open('https://www.lexaloffle.com/bbs').then(proc => proc.unref());
 		break;
 
 	case "home":
-		opn('https://www.github.com/nicholaswagner/pico-tools');
+		open('https://www.github.com/nicholaswagner/pico-tools').then(proc => proc.unref());
 		break;
 
 	case "build":
